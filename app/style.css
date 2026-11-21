@@ -1,12 +1,38 @@
-html, body { margin: 0; height: 100%; background: #f2f0f4; color: #1d1b22; font: 15px/1.4 system-ui, sans-serif; }
-.app { display: flex; gap: 32px; align-items: center; justify-content: center; height: 100%; padding: 24px; box-sizing: border-box; }
-.controls { display: flex; flex-direction: column; gap: 14px; width: 280px; }
-.controls h1 { margin: 0; font-size: 28px; }
-.controls p { margin: 0; color: #5c5866; }
-label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
-input[type=text] { font: inherit; padding: 8px; border: 1px solid #c9c4d1; border-radius: 6px; }
-button { font: inherit; font-weight: 700; padding: 10px; border: 0; border-radius: 6px; background: #1d1b22; color: #fff; cursor: pointer; }
-canvas { width: min(70vh, 60vw); height: min(70vh, 60vw); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); }
+/* Vice Cover Studio — dark neon editor chrome. The cover itself is drawn
+   on the canvas; this sheet only styles the controls around it. */
+@font-face {
+  font-family: 'Anton';
+  src: url('./fonts/Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body { margin: 0; min-height: 100%; background: #14101c; color: #f2eef7; font: 15px/1.45 system-ui, sans-serif; }
+.app { display: flex; gap: 28px; align-items: flex-start; justify-content: center; padding: 24px; box-sizing: border-box; }
+.controls { display: flex; flex-direction: column; gap: 14px; width: 320px; flex: none; }
+.controls h1 { margin: 0; font-family: Anton, 'Arial Narrow', sans-serif; font-size: 34px; letter-spacing: 1px; color: #ffb347; }
+.tagline { margin: 0; color: #b9b0c9; }
+fieldset { margin: 0; padding: 12px; border: 1px solid #3a3049; border-radius: 10px; }
+legend { padding: 0 6px; font-weight: 700; color: #ffb347; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+button { font: inherit; font-weight: 600; padding: 8px 12px; border: 1px solid #4a3f5c; border-radius: 8px; background: #241d31; color: #f2eef7; cursor: pointer; }
+button:hover { background: #322847; }
+button:disabled { opacity: 0.4; cursor: default; }
+button[aria-pressed="true"] { background: #ff2d95; border-color: #ff2d95; color: #fff; }
+button.export { background: #ffb347; border-color: #ffb347; color: #1d1024; }
+button.export:hover { background: #ffc46b; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; margin-bottom: 8px; }
+label:last-child { margin-bottom: 0; }
+input[type=text] { font: inherit; padding: 8px; border: 1px solid #4a3f5c; border-radius: 6px; background: #1c1626; color: #f2eef7; }
+input[type=range] { width: 100%; accent-color: #ff2d95; }
+.hint, .fine { margin: 8px 0 0; font-size: 13px; color: #9a8fb0; }
+#status { margin: 0; min-height: 1.4em; color: #7fe7d2; }
+.slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px; }
+.slot { aspect-ratio: 1; padding: 0; background-size: cover; background-position: center; background-color: #1c1626; font-size: 20px; color: #b9b0c9; display: flex; align-items: flex-end; justify-content: flex-start; text-shadow: 0 1px 4px #000; }
+.stage { flex: 1; display: flex; align-items: center; justify-content: center; min-width: 0; }
+canvas { width: min(78vh, 100%); height: auto; aspect-ratio: auto; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55); background: #0e0a14; cursor: crosshair; }
 body.shot-cover .controls { display: none; }
-body.shot-cover .app { padding: 0; }
-body.shot-cover canvas { width: 100vw; height: 100vh; box-shadow: none; }
+body.shot-cover .app { padding: 0; height: 100vh; }
+body.shot-cover .stage { width: 100vw; height: 100vh; }
+body.shot-cover canvas { width: 100vw; height: 100vh; object-fit: contain; box-shadow: none; cursor: default; }
